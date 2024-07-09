@@ -1,0 +1,5 @@
+#to create one pod with image of redis and generate yaml file out of it
+
+kubectl run redis --image=redis123 --dry-run -o yaml    #this command is deprecated
+
+kubectl run redis --image=redis123 --dry-run=client -o yaml 

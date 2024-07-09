@@ -1,0 +1,22 @@
+kubectl create -f replicaset-defination.yml
+
+kubectl get replicaset
+
+kubectl delete  replicaset myapp-replicaset   #also delete the underlying pods
+
+kubectl replace -f  replicaset-defination.yml
+
+kubectl scale -replicas=6 -f replicaset-defination.yml  # to scale replicas via replicaset without modifing file.
+
+
+#applying labels while creating  pods
+kubectl run redis --image=redis:alpine --labels="tier-db"
+
+#create a service redis-service to expose the redis application within the cluster on port 6379
+kubectl expose pod redis --port 6379 --name redis-service
+
+#create a pod callled custom-nginx using the nginx image and expose it on container port 8080
+kubectl run custom-nginx --image=nginx --port=8080
+
+#create a pod called httpd usiing the image httpd:alpine in the default namespace. next, create a service of type clusterip by the same name httpd. The target pod for the service shoould be 80.
+kubectl run httpd --image=httpd:alpine --port:80 --expose=true 
